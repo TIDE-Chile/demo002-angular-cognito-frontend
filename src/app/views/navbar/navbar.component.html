@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">TIDE Cognito auth template</a>
+
+      <button
+        class="btn btn-primary btn-margin"
+        routerLink="/home">
+          Home
+      </button>
+
+      <button
+      class="btn btn-primary btn-margin"
+      routerLink="/another_page">
+        Another page
+    </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="!auth.isAuthenticated()"
+        (click)="auth.login()">
+          Log In
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="auth.isAuthenticated()"
+        (click)="auth.logout()">
+          Log Out
+      </button>
+
+      <a *ngIf="auth.isAuthenticated()">{{name}} ({{email}})</a>
+
+    </div>
+  </div>
+</nav>

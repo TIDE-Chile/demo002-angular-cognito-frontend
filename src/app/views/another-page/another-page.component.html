@@ -1,0 +1,14 @@
+<h1>This is another page</h1>
+
+The user is: {{claims && claims.name}}
+<p></p>
+ID Token: 
+<div>
+  {{auth.idToken | async}}
+</div>
+<p></p>
+Access Token: 
+<div>
+  {{auth.accessToken | async}}
+</div>
+

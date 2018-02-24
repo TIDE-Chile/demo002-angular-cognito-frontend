@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+- '6.9.1'
+
+
+branches:
+  only:
+    - master
+
+before_script:
+  - npm install -g @angular/cli@1.6.4
+  - npm i
+
+script:
+  - ng build --env=prod --base-href /cognito/
+ 
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: visualiza.tideapps.com
+  skip_cleanup: true
+  upload-dir: cognito
+  local_dir: dist
+
+after_deploy:
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change

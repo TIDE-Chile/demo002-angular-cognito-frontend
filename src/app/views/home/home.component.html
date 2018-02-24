@@ -4,4 +4,50 @@
 <div *ngIf="isAuthorized">
     <div>name: {{name}}</div>
     <div>email: {{email}}</div>
+
+    <h2>Perfil</h2>
+    <div class="md-form">
+        <input mdbActive type="text" id="form1" class="form-control" name="city" [(ngModel)]="city" (change)=saveProfile()>
+        <label for="form1" class="">City</label>
+    </div>
+    <h2>Evidencias</h2>
+
+    <ul>
+        <li *ngFor="let evidence of evidenceList">
+            {{evidence}}
+        </li>
+    </ul>
+
+    <h2>Imagenes</h2>
+    <div class="center">
+        <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
+        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        </file-drop>
+        <div class="upload-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody class="upload-name-style">
+                    <tr *ngFor="let item of files; let i=index">
+                        <td><strong>{{ item.relativePath }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let photo of photos">
+            <img [attr.src]="photo" height="50">
+        </li>
+    </ul>
 </div>
+
+
+
+<input type="file" id="file-chooser" />
+<button id="upload-button"  (click)="addPhoto()">Upload to S3</button>
+<div id="results"></div>
+<div id="fb-root"></div>

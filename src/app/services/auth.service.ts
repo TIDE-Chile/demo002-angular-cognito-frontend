@@ -6,6 +6,8 @@ import { COGNITO_CONFIG } from '../cognito_auth_config';
 import { RouteConfigLoadStart } from '@angular/router/src/events';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+const AWS = require('aws-sdk');
+
 export class AuthConfig {
   constructor(
     public readonly clientId: string,
@@ -56,6 +58,8 @@ export class AuthService {
         this.idTokenSubject.next(idToken);
         this.accessTokenSubject.next(accessToken);
         this.claimsSubject.next(payload);
+
+        console.log('Successfully logged!');
       }
     })
   }

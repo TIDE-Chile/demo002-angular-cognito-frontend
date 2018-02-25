@@ -50,7 +50,6 @@ export class AuthService {
   constructor(
     private router:Router
   ) {
-    alert(this.myUrl);
     this.initAuth();
 
     this.sessionObservable.subscribe((session) => {

@@ -12,6 +12,7 @@ export class AuthConfig {
   constructor(
     public readonly clientId: string,
     public readonly domain: string,
+    private router: Router
   ) {}
 }
 
@@ -30,13 +31,17 @@ export class AuthService {
 
   claimsSubject = new BehaviorSubject(null);
   claims = this.claimsSubject.asObservable();
+
+  myUrl = window.location.href;
   
   cognitoAuthConfig = {
     ClientId: COGNITO_CONFIG.ClientId,
     AppWebDomain: COGNITO_CONFIG.AppWebDomain,
     TokenScopesArray: COGNITO_CONFIG.TokenScopesArray,
-    RedirectUriSignIn: COGNITO_CONFIG.RedirectUriSignIn,
-    RedirectUriSignOut: COGNITO_CONFIG.RedirectUriSignOut,
+    // RedirectUriSignIn: COGNITO_CONFIG.RedirectUriSignIn,
+    // RedirectUriSignOut: COGNITO_CONFIG.RedirectUriSignOut,
+    RedirectUriSignIn: this.myUrl,
+    RedirectUriSignOut: this.myUrl,
     IdentityProvider: null, // 'Google' | 'Facebook'
     UserPoolId : COGNITO_CONFIG.UserPoolId,
     AdvancedSecurityDataCollectionFlag: false
